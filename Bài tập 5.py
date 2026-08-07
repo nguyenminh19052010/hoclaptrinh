@@ -58,7 +58,7 @@ else:
     mat_khau_hoan_chinh = "".join(bat_buoc)
     print(f"Mật khẩu: {mat_khau_hoan_chinh}")
 
-#bài 6 (Bài 7 trong ảnh: Sinh nhiều mật khẩu gợi ý)
+#bài 6 
 print("Các mật khẩu gợi ý:")
 kho_ky_tu = string.ascii_letters + string.digits + string.punctuation
 
