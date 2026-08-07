@@ -1,0 +1,4 @@
+# Bỏ qua tất cả các file ngoại trừ Bài tập 5.py và .gitignore
+*
+!Bài tập 5.py
+!.gitignore
