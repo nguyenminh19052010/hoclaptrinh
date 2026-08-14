@@ -1,4 +1,6 @@
-# Bỏ qua tất cả các file ngoại trừ Bài tập 5.py và .gitignore
+# Bỏ qua tất cả các file ngoại trừ Bài tập 5.py, Bài tập 6.py và .gitignore
 *
 !Bài tập 5.py
+!Bài tập 6.py
 !.gitignore
+
