@@ -1,28 +1,18 @@
-# Mini Social - Hệ Thống Đăng Nhập & Đăng Ký Console
+# Pygame Giao Diện Cơ Bản (Textbox & Button)
 
-Dự án Python đơn giản mô phỏng hệ thống đăng nhập, đăng ký tài khoản và quản lý phiên làm việc trên giao diện dòng lệnh (Console/Terminal).
+Dự án Python siêu cơ bản tạo một cửa sổ giao diện Pygame gồm **1 Ô nhập liệu (Textbox)** và **1 Nút bấm (Button)**.
 
-## 🚀 Tính Năng Chính
+## 🚀 Chức Năng
 
-- **Đăng Nhập**: Kiểm tra tên tài khoản và mật khẩu đã tồn tại trong hệ thống.
-- **Đăng Ký Tài Khoản**:
-  - Tên đăng nhập phải từ 3 ký tự trở lên.
-  - Mật khẩu phải từ 4 ký tự trở lên.
-  - Xác nhận mật khẩu nhập lại trùng khớp.
-  - Tránh đăng ký trùng tên tài khoản đã có.
-- **Trang Chủ & Đăng Xuất**: Sau khi đăng nhập thành công, người dùng có thể xem trang cá nhân hoặc đăng xuất.
+- **Ô nhập liệu (Textbox)**: Đổi màu viền xanh khi nhấp chuột vào để nhập văn bản từ bàn phím (hỗ trợ phím `Backspace` để xóa).
+- **Nút bấm (Button)**: Khi nhấp vào nút, chương trình sẽ in nội dung đã nhập trong Textbox ra màn hình Terminal.
 
 ## 🛠️ Hướng Dẫn Chạy
 
-Yêu cầu máy tính đã cài sẵn **Python 3**.
+Yêu cầu máy tính đã cài đặt Python 3 và thư viện Pygame (`pip install pygame`).
 
-Mở Terminal / Command Prompt tại thư mục dự án và chạy lệnh:
+Mở Terminal và chạy lệnh:
 
 ```bash
 python duan.py
 ```
-
-## 📁 Cấu Trúc Dự Án
-
-- `duan.py`: File mã nguồn chính của chương trình.
-- `README.md`: Tài liệu hướng dẫn sử dụng.
