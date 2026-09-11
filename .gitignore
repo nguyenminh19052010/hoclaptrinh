@@ -1,6 +1,9 @@
-# Bỏ qua tất cả các file ngoại trừ Bài tập 5.py, Bài tập 6.py và .gitignore
+# Bỏ qua tất cả ngoại trừ các file bài tập, dự án và README.md
 *
 !Bài tập 5.py
 !Bài tập 6.py
+!duan.py
+!README.md
 !.gitignore
+
 
