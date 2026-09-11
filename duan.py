@@ -2,11 +2,11 @@ import pygame
 import sys
 
 pygame.init()
-man_hinh = pygame.display.set_mode((400, 350))
+man_hinh = pygame.display.set_mode((450, 350))
 pygame.display.set_caption("He thong Tai Khoan")
-phong = pygame.font.SysFont("arial", 20)
+phong = pygame.font.SysFont("arial", 18)
 
-danh_sach = {"admin": "123456"}
+danh_sach = {"admin": "Admin@123"}
 trang = "dn"
 dang_chon = ""
 thong_bao = ""
@@ -14,16 +14,16 @@ thong_bao = ""
 tk_dn, mk_dn = "", ""
 tk_dk, mk_dk, nmk_dk = "", "", ""
 
-o_tk_dn = pygame.Rect(100, 60, 200, 35)
-o_mk_dn = pygame.Rect(100, 110, 200, 35)
-nut_dn = pygame.Rect(100, 170, 200, 40)
-nut_qua_dk = pygame.Rect(100, 230, 200, 30)
+o_tk_dn = pygame.Rect(125, 60, 200, 35)
+o_mk_dn = pygame.Rect(125, 110, 200, 35)
+nut_dn = pygame.Rect(125, 170, 200, 40)
+nut_qua_dk = pygame.Rect(125, 230, 200, 30)
 
-o_tk_dk = pygame.Rect(100, 50, 200, 35)
-o_mk_dk = pygame.Rect(100, 95, 200, 35)
-o_nmk_dk = pygame.Rect(100, 140, 200, 35)
-nut_dk = pygame.Rect(100, 195, 200, 40)
-nut_qua_dn = pygame.Rect(100, 250, 200, 30)
+o_tk_dk = pygame.Rect(125, 45, 200, 35)
+o_mk_dk = pygame.Rect(125, 90, 200, 35)
+o_nmk_dk = pygame.Rect(125, 135, 200, 35)
+nut_dk = pygame.Rect(125, 190, 200, 40)
+nut_qua_dn = pygame.Rect(125, 245, 200, 30)
 
 while True:
     for e in pygame.event.get():
@@ -64,12 +64,27 @@ while True:
                     dang_chon = ""
 
                 if nut_dk.collidepoint(e.pos):
+                    co_hoa = any(c.isupper() for c in mk_dk)
+                    co_thuong = any(c.islower() for c in mk_dk)
+                    co_so = any(c.isdigit() for c in mk_dk)
+                    co_dac_biet = any(not c.isalnum() for c in mk_dk)
+
                     if not tk_dk or not mk_dk:
                         thong_bao = "Vui long nhap du thong tin!"
                     elif tk_dk in danh_sach:
                         thong_bao = "Tai khoan da ton tai!"
                     elif mk_dk != nmk_dk:
                         thong_bao = "Mat khau nhap lai khong khop!"
+                    elif len(mk_dk) < 8:
+                        thong_bao = "Mat khau phai tu 8 ky tu tro len!"
+                    elif not co_hoa:
+                        thong_bao = "Mat khau phai co it nhat 1 chu in hoa!"
+                    elif not co_thuong:
+                        thong_bao = "Mat khau phai co it nhat 1 chu in thuong!"
+                    elif not co_so:
+                        thong_bao = "Mat khau phai co it nhat 1 chu so!"
+                    elif not co_dac_biet:
+                        thong_bao = "Mat khau phai co 1 ky tu dac biet (!@#...)!"
                     else:
                         danh_sach[tk_dk] = mk_dk
                         thong_bao = "Dang ky thanh cong! Hay dang nhap."
@@ -154,6 +169,6 @@ while True:
 
     if thong_bao:
         txt_tb = phong.render(thong_bao, True, (200, 0, 0))
-        man_hinh.blit(txt_tb, (30, 295))
+        man_hinh.blit(txt_tb, (20, 295))
 
     pygame.display.flip()
