@@ -2,18 +2,28 @@ import pygame
 import sys
 
 pygame.init()
-man_hinh = pygame.display.set_mode((400, 300))
-pygame.display.set_caption("Dang nhap")
+man_hinh = pygame.display.set_mode((400, 350))
+pygame.display.set_caption("He thong Tai Khoan")
 phong = pygame.font.SysFont("arial", 20)
 
-o_tk = pygame.Rect(100, 50, 200, 35)
-o_mk = pygame.Rect(100, 100, 200, 35)
-nut = pygame.Rect(100, 160, 200, 40)
-
-tk = ""
-mk = ""
+danh_sach = {"admin": "123456"}
+trang = "dn"
 dang_chon = ""
 thong_bao = ""
+
+tk_dn, mk_dn = "", ""
+tk_dk, mk_dk, nmk_dk = "", "", ""
+
+o_tk_dn = pygame.Rect(100, 60, 200, 35)
+o_mk_dn = pygame.Rect(100, 110, 200, 35)
+nut_dn = pygame.Rect(100, 170, 200, 40)
+nut_qua_dk = pygame.Rect(100, 230, 200, 30)
+
+o_tk_dk = pygame.Rect(100, 50, 200, 35)
+o_mk_dk = pygame.Rect(100, 95, 200, 35)
+o_nmk_dk = pygame.Rect(100, 140, 200, 35)
+nut_dk = pygame.Rect(100, 195, 200, 40)
+nut_qua_dn = pygame.Rect(100, 250, 200, 30)
 
 while True:
     for e in pygame.event.get():
@@ -22,49 +32,128 @@ while True:
             sys.exit()
 
         if e.type == pygame.MOUSEBUTTONDOWN:
-            if o_tk.collidepoint(e.pos):
-                dang_chon = "tk"
-            elif o_mk.collidepoint(e.pos):
-                dang_chon = "mk"
-            else:
-                dang_chon = ""
-
-            if nut.collidepoint(e.pos):
-                if tk == "admin" and mk == "123456":
-                    thong_bao = "Dang nhap thanh cong!"
+            if trang == "dn":
+                if o_tk_dn.collidepoint(e.pos):
+                    dang_chon = "tk_dn"
+                elif o_mk_dn.collidepoint(e.pos):
+                    dang_chon = "mk_dn"
                 else:
-                    thong_bao = "Sai tai khoan hoac mat khau!"
+                    dang_chon = ""
 
-        if e.type == pygame.KEYDOWN:
-            if dang_chon == "tk":
+                if nut_dn.collidepoint(e.pos):
+                    if not tk_dn or not mk_dn:
+                        thong_bao = "Vui long nhap du thong tin!"
+                    elif danh_sach.get(tk_dn) == mk_dn:
+                        thong_bao = "Dang nhap thanh cong!"
+                    else:
+                        thong_bao = "Sai tai khoan hoac mat khau!"
+
+                elif nut_qua_dk.collidepoint(e.pos):
+                    trang = "dk"
+                    thong_bao = ""
+                    dang_chon = ""
+
+            elif trang == "dk":
+                if o_tk_dk.collidepoint(e.pos):
+                    dang_chon = "tk_dk"
+                elif o_mk_dk.collidepoint(e.pos):
+                    dang_chon = "mk_dk"
+                elif o_nmk_dk.collidepoint(e.pos):
+                    dang_chon = "nmk_dk"
+                else:
+                    dang_chon = ""
+
+                if nut_dk.collidepoint(e.pos):
+                    if not tk_dk or not mk_dk:
+                        thong_bao = "Vui long nhap du thong tin!"
+                    elif tk_dk in danh_sach:
+                        thong_bao = "Tai khoan da ton tai!"
+                    elif mk_dk != nmk_dk:
+                        thong_bao = "Mat khau nhap lai khong khop!"
+                    else:
+                        danh_sach[tk_dk] = mk_dk
+                        thong_bao = "Dang ky thanh cong! Hay dang nhap."
+                        trang = "dn"
+                        tk_dn = tk_dk
+                        mk_dn = ""
+
+                elif nut_qua_dn.collidepoint(e.pos):
+                    trang = "dn"
+                    thong_bao = ""
+                    dang_chon = ""
+
+        if e.type == pygame.KEYDOWN and dang_chon:
+            if dang_chon == "tk_dn":
                 if e.key == pygame.K_BACKSPACE:
-                    tk = tk[:-1]
+                    tk_dn = tk_dn[:-1]
                 elif e.unicode.isprintable():
-                    tk += e.unicode
-            elif dang_chon == "mk":
+                    tk_dn += e.unicode
+            elif dang_chon == "mk_dn":
                 if e.key == pygame.K_BACKSPACE:
-                    mk = mk[:-1]
+                    mk_dn = mk_dn[:-1]
                 elif e.unicode.isprintable():
-                    mk += e.unicode
+                    mk_dn += e.unicode
+            elif dang_chon == "tk_dk":
+                if e.key == pygame.K_BACKSPACE:
+                    tk_dk = tk_dk[:-1]
+                elif e.unicode.isprintable():
+                    tk_dk += e.unicode
+            elif dang_chon == "mk_dk":
+                if e.key == pygame.K_BACKSPACE:
+                    mk_dk = mk_dk[:-1]
+                elif e.unicode.isprintable():
+                    mk_dk += e.unicode
+            elif dang_chon == "nmk_dk":
+                if e.key == pygame.K_BACKSPACE:
+                    nmk_dk = nmk_dk[:-1]
+                elif e.unicode.isprintable():
+                    nmk_dk += e.unicode
 
     man_hinh.fill((240, 240, 240))
 
-    pygame.draw.rect(man_hinh, (255, 255, 255), o_tk)
-    pygame.draw.rect(man_hinh, (0, 0, 0), o_tk, 1)
-    hien_tk = phong.render(tk if tk else "Tai khoan", True, (0, 0, 0) if tk else (150, 150, 150))
-    man_hinh.blit(hien_tk, (o_tk.x + 5, o_tk.y + 5))
+    if trang == "dn":
+        pygame.draw.rect(man_hinh, (255, 255, 255), o_tk_dn)
+        pygame.draw.rect(man_hinh, (0, 0, 0), o_tk_dn, 1)
+        txt_tk = phong.render(tk_dn if tk_dn else "Tai khoan", True, (0, 0, 0) if tk_dn else (150, 150, 150))
+        man_hinh.blit(txt_tk, (o_tk_dn.x + 5, o_tk_dn.y + 5))
 
-    pygame.draw.rect(man_hinh, (255, 255, 255), o_mk)
-    pygame.draw.rect(man_hinh, (0, 0, 0), o_mk, 1)
-    hien_mk = phong.render("*" * len(mk) if mk else "Mat khau", True, (0, 0, 0) if mk else (150, 150, 150))
-    man_hinh.blit(hien_mk, (o_mk.x + 5, o_mk.y + 5))
+        pygame.draw.rect(man_hinh, (255, 255, 255), o_mk_dn)
+        pygame.draw.rect(man_hinh, (0, 0, 0), o_mk_dn, 1)
+        txt_mk = phong.render("*" * len(mk_dn) if mk_dn else "Mat khau", True, (0, 0, 0) if mk_dn else (150, 150, 150))
+        man_hinh.blit(txt_mk, (o_mk_dn.x + 5, o_mk_dn.y + 5))
 
-    pygame.draw.rect(man_hinh, (0, 120, 255), nut)
-    hien_nut = phong.render("Dang nhap", True, (255, 255, 255))
-    man_hinh.blit(hien_nut, (nut.x + 50, nut.y + 8))
+        pygame.draw.rect(man_hinh, (0, 120, 255), nut_dn)
+        txt_nut = phong.render("Dang nhap", True, (255, 255, 255))
+        man_hinh.blit(txt_nut, (nut_dn.x + 50, nut_dn.y + 8))
+
+        txt_chuyen = phong.render("Chua co tai khoan? Dang ky", True, (0, 100, 200))
+        man_hinh.blit(txt_chuyen, (nut_qua_dk.x - 20, nut_qua_dk.y + 5))
+
+    elif trang == "dk":
+        pygame.draw.rect(man_hinh, (255, 255, 255), o_tk_dk)
+        pygame.draw.rect(man_hinh, (0, 0, 0), o_tk_dk, 1)
+        txt_tk = phong.render(tk_dk if tk_dk else "Tai khoan moi", True, (0, 0, 0) if tk_dk else (150, 150, 150))
+        man_hinh.blit(txt_tk, (o_tk_dk.x + 5, o_tk_dk.y + 5))
+
+        pygame.draw.rect(man_hinh, (255, 255, 255), o_mk_dk)
+        pygame.draw.rect(man_hinh, (0, 0, 0), o_mk_dk, 1)
+        txt_mk = phong.render("*" * len(mk_dk) if mk_dk else "Mat khau", True, (0, 0, 0) if mk_dk else (150, 150, 150))
+        man_hinh.blit(txt_mk, (o_mk_dk.x + 5, o_mk_dk.y + 5))
+
+        pygame.draw.rect(man_hinh, (255, 255, 255), o_nmk_dk)
+        pygame.draw.rect(man_hinh, (0, 0, 0), o_nmk_dk, 1)
+        txt_nmk = phong.render("*" * len(nmk_dk) if nmk_dk else "Nhap lai mat khau", True, (0, 0, 0) if nmk_dk else (150, 150, 150))
+        man_hinh.blit(txt_nmk, (o_nmk_dk.x + 5, o_nmk_dk.y + 5))
+
+        pygame.draw.rect(man_hinh, (0, 180, 100), nut_dk)
+        txt_nut = phong.render("Dang ky", True, (255, 255, 255))
+        man_hinh.blit(txt_nut, (nut_dk.x + 60, nut_dk.y + 8))
+
+        txt_chuyen = phong.render("Quay lai Dang nhap", True, (0, 100, 200))
+        man_hinh.blit(txt_chuyen, (nut_qua_dn.x + 15, nut_qua_dn.y + 5))
 
     if thong_bao:
-        hien_tb = phong.render(thong_bao, True, (200, 0, 0))
-        man_hinh.blit(hien_tb, (60, 220))
+        txt_tb = phong.render(thong_bao, True, (200, 0, 0))
+        man_hinh.blit(txt_tb, (30, 295))
 
     pygame.display.flip()
