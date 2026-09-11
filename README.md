@@ -1,18 +1,22 @@
-# Pygame Giao Diện Cơ Bản (Textbox & Button)
+# Học Lập Trình Pygame - Dự Án & Ví Dụ Cơ Bản
 
-Dự án Python siêu cơ bản tạo một cửa sổ giao diện Pygame gồm **1 Ô nhập liệu (Textbox)** và **1 Nút bấm (Button)**.
+Thư mục tổng hợp các dự án và ví dụ học lập trình Pygame.
 
-## 🚀 Chức Năng
+## 📁 Các File Trong Thư Mục
 
-- **Ô nhập liệu (Textbox)**: Đổi màu viền xanh khi nhấp chuột vào để nhập văn bản từ bàn phím (hỗ trợ phím `Backspace` để xóa).
-- **Nút bấm (Button)**: Khi nhấp vào nút, chương trình sẽ in nội dung đã nhập trong Textbox ra màn hình Terminal.
+1. **`duan.py`**: Hệ thống Đăng nhập / Đăng ký Mini Social với giao diện Pygame (Đầy đủ tính năng validation, chuyển trang, ô nhập dữ liệu).
+2. **`giao_dien_co_ban.py`**: Ví dụ mẫu Pygame tối giản nhất gồm **1 Ô nhập liệu (Textbox)** và **1 Nút nhấn (Button)**.
 
 ## 🛠️ Hướng Dẫn Chạy
 
 Yêu cầu máy tính đã cài đặt Python 3 và thư viện Pygame (`pip install pygame`).
 
-Mở Terminal và chạy lệnh:
-
+### Chạy hệ thống Đăng nhập (Dự án Mini Social):
 ```bash
 python duan.py
+```
+
+### Chạy ví dụ giao diện cơ bản (Textbox + Button):
+```bash
+python giao_dien_co_ban.py
 ```
