@@ -1,22 +1,21 @@
-# Học Lập Trình Pygame - Dự Án & Ví Dụ Cơ Bản
+**Hệ thống Tài khoản**
+Ứng dụng desktop đơn giản được viết bằng Python và Pygame, mô phỏng chức năng đăng ký và đăng nhập tài khoản.
 
-Thư mục tổng hợp các dự án và ví dụ học lập trình Pygame.
+**Chức năng**
+- Đăng nhập bằng tài khoản và mật khẩu.
+- Đăng ký tài khoản mới.
+- Kiểm tra tài khoản đã tồn tại.
+- Kiểm tra xác nhận mật khẩu.
+- Yêu cầu mật khẩu có tối thiểu 8 ký tự, gồm chữ hoa, chữ thường, chữ số và ký tự đặc biệt.
+- Hiển thị mật khẩu dưới dạng ký tự *.
 
-## 📁 Các File Trong Thư Mục
+**Yêu cầu**
+- Thư viện pygame.
 
-1. **`duan.py`**: Hệ thống Đăng nhập / Đăng ký Mini Social với giao diện Pygame (Đầy đủ tính năng validation, chuyển trang, ô nhập dữ liệu).
-2. **`giao_dien_co_ban.py`**: Ví dụ mẫu Pygame tối giản nhất gồm **1 Ô nhập liệu (Textbox)** và **1 Nút nhấn (Button)**.
-
-## 🛠️ Hướng Dẫn Chạy
-
-Yêu cầu máy tính đã cài đặt Python 3 và thư viện Pygame (`pip install pygame`).
-
-### Chạy hệ thống Đăng nhập (Dự án Mini Social):
-```bash
+**Cài đặt và chạy**
+- Mở Terminal hoặc CMD tại thư mục dự án, sau đó chạy:
+pip install pygame
 python duan.py
-```
 
-### Chạy ví dụ giao diện cơ bản (Textbox + Button):
-```bash
-python giao_dien_co_ban.py
-```
+**Tác giả**
+Nguyễn Quốc Minh
